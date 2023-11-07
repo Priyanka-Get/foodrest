@@ -1,0 +1,62 @@
+
+
+
+
+{% extends "rest_app/base.html" %}
+
+{% block content %}
+
+ 
+    <h2 id="h2">Order List</h2>
+    <a href="{% url 'order_create' %}" class="btn btn-success" id="btn">Add New Order</a>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>Category</th>
+          <th>Food Item</th>
+          <th>Quantity</th>
+
+        
+          
+          <th>Order date</th>
+          <th>Payment status</th>
+
+          <th>Action</th>
+         
+          
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for orders in order %}
+          <tr>
+            <td>{{ orders.restaurant }}</td>
+            <td>{{ orders.category }}</td>
+            <td>{{ orders.food_item }}</td>
+            <td>{{ orders.food_quantity }}</td>
+            
+            <td>{{ orders.order_date }}</td>
+            <td>{{ orders.payment_status }}</td>
+
+
+
+            
+           
+            <td class="btn">
+              <a href="{% url 'order_update' orders.pk %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'order_delete' orders.pk %}" class="btn btn-dark">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+      
+    </table>
+
+ 
+{% endblock %}
+
+
+

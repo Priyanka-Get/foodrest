@@ -1,0 +1,74 @@
+{% extends "rest_app/base.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    input[type="submit"] {
+        background-color: #ff5555;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #ff0000;
+    }
+
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #333;
+    }
+</style>
+
+<div class="container">
+    <h1>Delete Restaurant</h1>
+    <p>Are you sure you want to delete this Restaurant?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    <a href="{% url 'restaurant_list' %}">Cancel</a>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+
+
+
+{% extends "rest_app/base.html" %}
+
+{% block content %}
+
+  
+    <h2 id="h2">Employee List</h2>
+    <a href="{% url 'add_employee' %}" class="btn btn-success" id="btn">Add New Employee</a>
+    <table class="table table-striped" padding="55%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employees %}
+          <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.phone }}</td>
+            <td class="btn">
+              <a href="{% url 'edit_employee' employee.pk %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'delete_employee' employee.pk %}" class="btn btn-dark">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+
+{% endblock %}

@@ -1,0 +1,65 @@
+
+
+
+
+{% extends "rest_app/base.html" %}
+
+{% block content %}
+
+ 
+    <h2 id="h2">Customer List</h2>
+    <a href="{% url 'customer_create' %}" class="btn btn-success" id="btn">Add New Customer</a>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone number</th>
+          <th>Food Item</th>
+          <th>Quantity</th>
+            
+          <th>category</th>
+          <th>Restaurant</th>
+          <th>order status</th>
+          <th>payment </th>
+
+
+
+          <th>Action</th>
+         
+          
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for customers in customer %}
+          <tr>
+            <td>{{ customers.name }}</td>
+            <td>{{ customers.phone }}</td>
+            <td>{{ customers.food_item }}</td>
+            <td>{{ customers.quantity }}</td>
+            <td>{{ customers.category }}</td>
+            <td>{{ customers.restaurant}}</td>
+            <td>{{ customers.order_status }}</td>
+            <td>{{ customers.payment_status }}</td>
+
+
+
+            
+           
+            <td class="btn">
+              <a href="{% url 'customer_update' customers.pk %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'customer_delete' customers.pk %}" class="btn btn-dark">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+      
+    </table>
+
+ 
+{% endblock %}
+
+
+

@@ -1,0 +1,59 @@
+
+
+
+
+{% extends "rest_app/base.html" %}
+
+{% block content %}
+
+ 
+    <h2 id="h2">Food Item List</h2>
+    <a href="{% url 'fooditemstatus_create' %}" class="btn btn-success" id="btn">Add New Fooditem</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          
+          <th>Restuarant</th>
+          <th>Category</th>
+          <th>Food Item</th>
+        
+          <th>Status</th>
+
+          <th>Action</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for fooditems in fooditemstatus %}
+          <tr>
+           
+            <td>{{ fooditems.restaurant}}</td>
+
+            <td>{{ fooditems.category }}</td>
+            <td>{{ fooditems.food_item}}</td>
+          
+          
+
+            
+            <td>{{ fooditems.name }}</td>
+
+           
+            <td class="btn">
+              <a href="{% url 'fooditemstatus_update' fooditems.pk %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'fooditemstatus_delete' fooditems.pk %}" class="btn btn-dark">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+      
+    </table>
+    
+ 
+{% endblock %}
+
+
+
+
+
+

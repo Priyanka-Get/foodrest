@@ -1,0 +1,98 @@
+{% extends 'foodapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .tit {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.picture {
+    vertical-align: middle;
+    border-style: none;
+    width: 300px;
+    border-radius: 50%;
+    height: 200px;
+}
+.item-title{
+    position: relative;
+    left: 100px;
+    margin-top: 10px;
+}
+.order{
+    position: relative;
+    top: 100px;
+    line-height: 250%;
+
+}
+.del{
+    position:absolute;
+    right:30px;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height:22px;
+    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: translateY(-30px);
+
+}
+.del:hover{
+    background-color: rgb(221, 164, 164);
+}
+</style>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <h2 class="tit" id="tit">Our Burgers</h2>
+
+            <div class="row">
+                {% for burger in burgers %}
+            <div class="col-md-6 p-4">
+
+                <img class="picture" src="{{burger.BImage}}">
+                <h4 class="pt-3" id="bur{{burger.id}}">{{burger.name}}</h4>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                   <input class="form-check-input"  name="burger{{burger.id}}"  value="{{burger.priceM}}"  type="radio" checked>
+                          {{burger.priceM}}$
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                   <input class="form-check-input" name="burger{{burger.id}}" value="{{burger.priceL}}"  type="radio" checked>
+                     
+                        {{burger.priceL}}$
+
+                    </label>
+
+                </div>
+                <div>
+                  <button class="btn-info mt-3" onclick="addBurger('{{ burger.id }}')">Add to  cart</button>
+                  </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="col-md-4 order">
+            <div class="bg-dark p-4 rounded text-light">
+            <h2 class="text-center">Order List</h2>
+            <ul id="bcart"></ul>
+            <h4 class="text-right" id="btotal">Total: 0 $</h4>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'foodapp/js/orders.js' %}"></script>
+
+
+{% endblock %}

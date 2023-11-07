@@ -1,0 +1,90 @@
+<style>
+    #h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+#btn {
+    display: block;
+    margin: 20px auto;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+td{
+    padding-left: 200px;
+}
+
+thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-group a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-warning {
+    background-color: #f0ad4e;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+}
+</style>
+
+
+
+<h2 id="h2" class="text-center mt-4">User List</h2>
+<a href="{% url 'user_create' %}" class="btn btn-success mb-3" id="btn">Add New</a>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Position</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for users in user %}
+                <tr>
+                    <td>{{ users.User_name }}</td>
+                    <td>{{ users.email }}</td>
+                    <td>{{ users.password }}</td>
+                    <td>{{ users.type }}</td>
+                    <td class="btn-group">
+                        <a href="{% url 'user_create' users.pk %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'user_delete' users.pk %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+ 
+
+
+
+
